@@ -45,7 +45,25 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 
-  #Set up xacro
+#Set up xacro
 RUN apt-get update \
   && apt-get install -y ros-foxy-xacro\
+  && rm -rf /var/lib/apt/lists/*
+
+
+#Set up libserial
+RUN apt-get update \
+  && apt-get install -y libserial-dev\
+  && rm -rf /var/lib/apt/lists/*
+
+
+#Set up libpcap (laser scanner)
+RUN apt-get update \
+  && apt-get install -y libpcap-dev\
+  && rm -rf /var/lib/apt/lists/*
+
+
+#Set up diagnostic-updater (laser scanner)
+RUN apt-get update \
+  && apt-get install -y ros-foxy-diagnostic-updater\
   && rm -rf /var/lib/apt/lists/*
