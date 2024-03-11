@@ -44,6 +44,11 @@ RUN apt-get update \
   && apt-get install -y ros-foxy-ros2-controllers\
   && rm -rf /var/lib/apt/lists/*
 
+#Set up gazebo control
+RUN apt-get update \
+  && apt-get install -y ros-foxy-gazebo-ros2-control \
+  && rm -rf /var/lib/apt/lists/*
+
 
 #Set up xacro
 RUN apt-get update \
@@ -67,3 +72,7 @@ RUN apt-get update \
 RUN apt-get update \
   && apt-get install -y ros-foxy-diagnostic-updater\
   && rm -rf /var/lib/apt/lists/*
+
+RUN echo 'source /opt/ros/${ROS_DISTRO}/setup.bash' >> /home/${USERNAME}/.bashrc \
+  && echo 'source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> /home/${USERNAME}/.bashrc \
+  && echo 'source /home/${USERNAME}/toybox_ws/install/setup.bash'>> /home/${USERNAME}/.bashrc 
