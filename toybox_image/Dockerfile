@@ -1,5 +1,5 @@
-FROM osrf/ros:foxy-desktop
-
+# FROM osrf/ros:foxy-desktop
+FROM ros:foxy
 
 # Example of installing programs
 RUN apt-get update \
@@ -61,17 +61,6 @@ RUN apt-get update \
   && apt-get install -y libserial-dev\
   && rm -rf /var/lib/apt/lists/*
 
-
-#Set up libpcap (laser scanner)
-RUN apt-get update \
-  && apt-get install -y libpcap-dev\
-  && rm -rf /var/lib/apt/lists/*
-
-
-#Set up diagnostic-updater (laser scanner)
-RUN apt-get update \
-  && apt-get install -y ros-foxy-diagnostic-updater\
-  && rm -rf /var/lib/apt/lists/*
 
 RUN echo 'source /opt/ros/${ROS_DISTRO}/setup.bash' >> /home/${USERNAME}/.bashrc \
   && echo 'source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> /home/${USERNAME}/.bashrc \
