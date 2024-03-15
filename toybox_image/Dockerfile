@@ -64,4 +64,4 @@ RUN apt-get update \
 
 RUN echo 'source /opt/ros/${ROS_DISTRO}/setup.bash' >> /home/${USERNAME}/.bashrc \
   && echo 'source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> /home/${USERNAME}/.bashrc \
-  && echo 'source /home/${USERNAME}/toybox_ws/install/setup.bash'>> /home/${USERNAME}/.bashrc 
+  && echo 'source /home/ros/toybox_ws/install/setup.bash'>> /home/${USERNAME}/.bashrc 
