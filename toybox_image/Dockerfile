@@ -1,5 +1,8 @@
-# FROM osrf/ros:foxy-desktop
 FROM ros:foxy
+
+
+
+
 
 # Example of installing programs
 RUN apt-get update \
@@ -19,10 +22,15 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
   && mkdir /home/$USERNAME/.config && chown $USER_UID:$USER_GID /home/$USERNAME/.config
 
+RUN usermod -aG dialout ${USERNAME}
+RUN groupadd -g 102 input \
+  && usermod -aG input ${USERNAME}
+
 # Set up lsusb
 RUN apt-get update \
   && apt-get install -y usbutils\
   && rm -rf /var/lib/apt/lists/*
+
 
 
 # Set up sudo
@@ -44,11 +52,10 @@ RUN apt-get update \
   && apt-get install -y ros-foxy-ros2-controllers\
   && rm -rf /var/lib/apt/lists/*
 
-#Set up gazebo control
+#Set up joy
 RUN apt-get update \
-  && apt-get install -y ros-foxy-gazebo-ros2-control \
+  && apt-get install -y ros-foxy-teleop-twist-joy \
   && rm -rf /var/lib/apt/lists/*
-
 
 #Set up xacro
 RUN apt-get update \
